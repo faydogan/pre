@@ -49,7 +49,11 @@ Thank you and good luck!
 # IMPLEMENTATION
 
 ## To deploy the application and run
+
 ```
-docker build -t preqin_task .
-docker run -d -p 3001:3001 -p 3002:3002 -p 8080:8080 preqin_task
+docker-compose up --build
 ```
+Services will run under:
+ - Frontend: http://localhost:8080/
+ - Backend (investors_service docs): http://localhost:3001/docs
+ - Backend (commitments_service docs): http://localhost:3002/docs

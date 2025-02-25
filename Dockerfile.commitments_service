@@ -1,0 +1,11 @@
+# Dockerfile.commitments_service
+FROM python:3.11-slim as py
+WORKDIR /app
+COPY ./backend/src/commitments_service ./commitments_service
+COPY ./backend/requirements.txt .
+RUN pip install -r requirements.txt
+RUN python -m commitments_service.dbservice
+
+EXPOSE 3002
+
+CMD ["uvicorn", "commitments_service.main:app", "--host", "0.0.0.0", "--port", "3002"]

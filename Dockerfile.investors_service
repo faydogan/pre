@@ -1,0 +1,11 @@
+# Dockerfile.investors_service
+FROM python:3.11-slim as py
+WORKDIR /app
+COPY ./backend/src/investors_service ./investors_service
+COPY ./backend/requirements.txt .
+RUN pip install -r requirements.txt
+RUN python -m investors_service.dbservice
+
+EXPOSE 3001
+
+CMD ["uvicorn", "investors_service.main:app", "--host", "0.0.0.0", "--port", "3001"]

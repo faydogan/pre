@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  investors_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.investors_service
+    ports:
+      - "3001:3001"
+
+  commitments_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.commitments_service
+    ports:
+      - "3002:3002"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - investors_service
+      - commitments_service

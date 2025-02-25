@@ -1,0 +1,8 @@
+# Dockerfile.frontend
+FROM node:14 as react
+WORKDIR /app
+COPY ./frontend ./
+RUN npm install && npm run build
+RUN npm install -g serve  # Install serve globally
+EXPOSE 8080
+CMD ["npx", "serve", "-s", "build", "-l", "8080"]  # Use npx serve to serve the build
